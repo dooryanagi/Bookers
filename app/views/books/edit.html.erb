@@ -1,0 +1,21 @@
+<h1>Editing Book</h1>
+
+<!--【？】詳細しない記述をしたいが、送るのが「books」のみか「:id」もかがわからない→答え！-->
+<%= form_with model: @book,url:update_book_path(@book.id), method: :patch do |f| %>
+  <div>
+    <label>
+      Title
+      <%= f.text_field :title %>
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Body
+      <%= f.text_area :body %>
+    </label>
+  </div>
+
+  <%= f.submit 'Updata Book'%>
+
+<% end %>

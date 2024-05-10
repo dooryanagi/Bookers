@@ -1,0 +1,24 @@
+<h2>New book</h2>
+
+
+<!--フォームの作成のために「form_withヘルパー」を使用する-->
+<!--この中にモデルとの連携について、どのURLへデータを送るのか、どのHTTPメソッドで送るのか定義する-->
+<!--Book.newにより、Bookモデルの情報をもとに新しいオブジェクトが作成される、Bookにあるカラム情報に新しい情報を格納することができる-->
+<%= form_with model: @book, url: '/books', method: :post do |f| %>
+  <div>
+    <label>
+      Title
+      <%= f.text_field :title %>
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Body
+      <%= f.text_area :body %>
+    </label>
+  </div>
+
+  <%= f.submit 'Create Book'%>
+
+<% end %>
