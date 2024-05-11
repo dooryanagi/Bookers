@@ -9,17 +9,22 @@ class BooksController < ApplicationController
   def create
     # データを受け取り新規登録するためのインスタンス作成
     # 保存した後に新たに表示するviewはないため、ローカル変数を使用
-    book = Book.new(book_params)
+    # ここは結局インスタンス変数？
+    @book = Book.new(book_params)
     # データベースに保存するためのsaveメソッド
-    book.save
-    # booksへリダイレクト
-    redirect_to book_path(book.id)
+    # バリデーションの反映
+    if @book.save
+      redirect_to book_path(book.id)
+    # データがなければ一覧のまま
+    else
+      redirect_to '/books'
+    end
 
   end
 
   #投稿フォームにあるページを表示する
   def new
-    # viewファイルに値を渡すための印すランス変数を定義、【？】空のモデルオブジェクトを生成する
+    # viewファイルに値を渡すためのインスタンス変数を定義、【？】空のモデルオブジェクトを生成する
     @book = Book.new
   end
 

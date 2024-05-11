@@ -7,4 +7,5 @@
 
 <%= link_to "Edit", edit_book_path(@book.id) %>
 <%= link_to "Back", '/books' %>
-<%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+<!--削除はできるようになったけど、見た目が変わってしまう-->
+<%= button_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %>

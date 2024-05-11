@@ -11,3 +11,7 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// detroyができない対応、そもそも.jsに対応した書き方
+require jquery
+require jquery_ujs
