@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   # 投稿内容の一覧を表示する
   def index
     @books = Book.all
+    @book = Book.new
   end
 
   # 投稿を保存するアクション
@@ -11,6 +12,7 @@ class BooksController < ApplicationController
     # 保存した後に新たに表示するviewはないため、ローカル変数を使用
     # ここは結局インスタンス変数？
     @book = Book.new(book_params)
+    @books = Book.all
     # データベースに保存するためのsaveメソッド
     # バリデーションの反映
     if @book.save
@@ -18,11 +20,9 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     # データがなければ一覧のまま
     else
-      # よくあるエラー集を参考に追加
-      @book = Book.all
       flash.now[:alert] = "Failed to create book."
       # ここはrender?redirect_to?
-      render '/books'
+      render :index
     end
 
   end
@@ -38,15 +38,16 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
+  #更新
   def update
-    # 更新は新たなビューを作成しないため、ローカル変数を用いて行う
-    book = Book.find(params[:id])
+    @book = Book.find(params[:id])
 
-    if book.update(book_params)
+    if @book.update(book_params)
       flash[:notice] = "Book was successfully updated."
-      redirect_to book_path(book.id)
+      redirect_to book_path(@book.id)
     else
       flash.now[:alert] = "Failed to update book."
+      # 右はアクション名
       render :edit
     end
 
@@ -61,7 +62,9 @@ class BooksController < ApplicationController
     # 削除後は新たなビューを作成しないため、ローカル変数を用いて行う
     book = Book.find(params[:id])
     book.destroy
-    redirect_to '/books'
+    # '/books'と:indexはどちらも行ける？
+    # URL
+    redirect_to books_path
   end
 
   private

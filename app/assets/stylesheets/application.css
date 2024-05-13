@@ -49,3 +49,7 @@ label {
 .show {
   display: flex;
 }
+
+td {
+  padding: 1px 5px 7px;
+}
