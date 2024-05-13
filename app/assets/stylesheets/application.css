@@ -29,3 +29,23 @@ body, p {
   line-height: 18px;
   margin: 33px;
 }
+
+h1 {
+  margin: 18px 0;
+}
+
+h2 {
+  margin: 16px 0;
+}
+
+th {
+
+}
+
+label {
+  display: block;
+}
+
+.show {
+  display: flex;
+}

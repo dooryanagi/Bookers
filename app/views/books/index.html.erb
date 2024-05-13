@@ -1,8 +1,5 @@
 <h1>Books</h1>
 
-
-
-
 <!--テーブルにする-->
 <table>
   <thead>
@@ -34,6 +31,18 @@
 <!--newの中身を張り付けてみよう-->
 
 <h2>New book</h2>
+
+<!--バリデーションのエラーメッセージを表示させる-->
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <!--フォームの作成のために「form_withヘルパー」を使用する-->
 <!--この中にモデルとの連携について、どのURLへデータを送るのか、どのHTTPメソッドで送るのか定義する-->
 <!--Book.newにより、Bookモデルの情報をもとに新しいオブジェクトが作成される、Bookにあるカラム情報に新しい情報を格納することができる-->

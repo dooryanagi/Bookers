@@ -1,11 +1,18 @@
-<p>Title:</p>
-<p><%= @book.title %></p>
+
+<p>
+    <strong>Title:</strong>
+    <%= @book.title %>
+</p>
 
 
-<p>Body:</p>
-<p><%= @book.body %></p>
 
-<%= link_to "Edit", edit_book_path(@book.id) %>
+<p>
+    <strong>Body:</strong>
+    <%= @book.body %>
+</p>
+
+
+<%= link_to "Edit", edit_book_path(@book.id) %>|
 <%= link_to "Back", '/books' %>
-<!--削除はできるようになったけど、見た目が変わってしまう-->
-<%= button_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+<!--削除はできるようになったけど、見た目が変わってしまう→詳細ページにdestroy不要-->
+<!--%= button_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %>-->

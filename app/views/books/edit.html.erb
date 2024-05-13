@@ -3,21 +3,22 @@
 <!--【？】詳細しない記述をしたいが、送るのが「books」のみか「:id」もかがわからない→答え！-->
 <%= form_with model: @book,url:update_book_path(@book.id), method: :patch do |f| %>
   <div>
-    <label>
-      Title
-      <%= f.text_field :title %>
-    </label>
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %>
   </div>
 
   <div>
-    <label>
-      Body
+      <%= f.label :body, "Body" %>
       <%= f.text_area :body %>
-    </label>
   </div>
 
+  <div>
   <%= f.submit 'Updata Book'%>
+  </div>
 
 <!--ShowとBackのリンクを作成-->
+  <%= link_to 'Show', book_path(@book.id) %>
+  |
+  <%= link_to "Back", '/books' %>
 
 <% end %>

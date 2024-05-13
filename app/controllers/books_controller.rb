@@ -14,10 +14,15 @@ class BooksController < ApplicationController
     # データベースに保存するためのsaveメソッド
     # バリデーションの反映
     if @book.save
-      redirect_to book_path(book.id)
+      flash[:notice] = "Book was successfully created."
+      redirect_to book_path(@book.id)
     # データがなければ一覧のまま
     else
-      redirect_to '/books'
+      # よくあるエラー集を参考に追加
+      @book = Book.all
+      flash.now[:alert] = "Failed to create book."
+      # ここはrender?redirect_to?
+      render '/books'
     end
 
   end
@@ -36,8 +41,15 @@ class BooksController < ApplicationController
   def update
     # 更新は新たなビューを作成しないため、ローカル変数を用いて行う
     book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book.id)
+
+    if book.update(book_params)
+      flash[:notice] = "Book was successfully updated."
+      redirect_to book_path(book.id)
+    else
+      flash.now[:alert] = "Failed to update book."
+      render :edit
+    end
+
   end
 
 
